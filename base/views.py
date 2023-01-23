@@ -52,20 +52,21 @@ class TaskList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tasks'] = context['tasks'].filter(user=self.request.user)
-        
+        context['count'] = context['tasks'].filter(complete=False).count()
+
         return context
     
-        def orderName(request):
-            name=Task.objects.filter(user=request.user).order_by('title')
-            return render(request,'task_list.html',name)
+def orderName(request):
+    name=Task.objects.filter.order_by('title')
+    return render(request,name)
 
 def orderDeadline(request):
-    dead=Task.objects.filter(user=request.user).order_by('deadline')
-    return render(request,'task_list.html',dead)
+    dead=Task.objects.filter('deadline').order_by 
+    return render(request,dead)
 
 def orderCreatio(request):
-    crea=Task.objects.filter(user=request.user).order_by('create')
-    return render(request,'task_list.html',crea)
+    crea=Task.objects.filter.order_by('create')
+    return render(request,crea)
 
 
 class TaskDetail(LoginRequiredMixin, DetailView):
